@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/wang/loginServlet" method="post">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <br>
+        <!--  验证码的制作-->
+        <input type="text"><img id="checkCode" src="/wang/checkCodeServlet?1" alt=""><a id="change" >看不清，换一张！</a>
+        <br>
+        <input type="submit" value="登录">
+    </form>
+    <script>
+        window.onload=function () {
+            var img = document.getElementById("checkCode");
+            img.onclick=aa;
+            var a = document.getElementById("change");
+            a.onclick=aa;
+            function aa() {
+                var date = new Date();
+                img.src="/wang/checkCodeServlet?"+date;
+            }
+        }
+    </script>
+</body>
+</html>

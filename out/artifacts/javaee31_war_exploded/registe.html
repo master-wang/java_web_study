@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <script src="/js/jquery.js"></script>
+    <script>
+        $(function () {
+            $("#username").blur(function () {
+                var username = $(this).val();
+                $.get("/wang/findUserAjaxServlet",{username :username},function (data) {
+                    console.log(data);
+
+                    if (data.userExit){
+                        $("#tip").html(data.msg);
+                        $("#tip").css("color","red");
+                    } else{
+                        $("#tip").html(data.msg);
+                        $("#tip").css("color","green");
+                    }
+                },"json")
+            })
+        })
+
+    </script>
+</head>
+<body>
+<form action="">
+    <input id="username" type="text" name="username" placeholder="用户名"><span id="tip"></span>
+    <br>
+
+</form>
+</body>
+</html>
